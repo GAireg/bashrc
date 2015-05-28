@@ -1,0 +1,35 @@
+source ~/.config/bashrc/color
+
+git_availabel=""
+
+# get git prompt if availabel
+if [[ -f /usr/share/git/git-prompt.sh ]]
+then
+	source /usr/share/git/git-prompt.sh
+	git_availabel=true
+fi
+
+export PROMPT_COMMAND=set_prompt
+
+set_prompt() {
+    # crete ps1 parts
+    # get exit code
+    local exit="$txtblu(\$?)$txtrst"
+    # print time
+    local time="$txtblu\A$txtrst"
+    # print user@host
+    local user="$txtgrn\u@\h$txtrst"
+    # print input prompt
+    local prompt="$txtblu\$$txtrst"
+    #print path
+    local path="$txtblu\w$txtrst"
+	#get git
+	local git=
+	if [[ -n $git_availabel ]]
+	then
+		git=__git_ps1
+	fi
+
+    # compose PS1
+    PS1="\[$exit\] \[$time\] \[$user\] \[$path\] \[$git\]\\n\[$prompt\] "
+}
