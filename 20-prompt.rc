@@ -27,7 +27,7 @@ set_prompt() {
 	local git=
 	if [[ -n $git_availabel ]]
 	then
-		git=__git_ps1
+	    git=$(__git_ps1 "(%s)")
 	fi
 
     # compose PS1
