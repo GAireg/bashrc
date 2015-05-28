@@ -14,15 +14,15 @@ export PROMPT_COMMAND=set_prompt
 set_prompt() {
     # crete ps1 parts
     # get exit code
-    local exit="$txtblu(\$?)$txtrst"
+    local exit="\[$txtblu\](\$?)\[$txtrst\]"
     # print time
-    local time="$txtblu\A$txtrst"
+    local time="\[$txtblu\]\A\[$txtrst\]"
     # print user@host
-    local user="$txtgrn\u@\h$txtrst"
+    local user="\[$txtgrn\]\u@\h\[$txtrst\]"
     # print input prompt
-    local prompt="$txtblu\$$txtrst"
+    local prompt="\[$txtblu\]\$\[$txtrst\]"
     #print path
-    local path="$txtblu\w$txtrst"
+    local path="\[$txtblu\]\w\[$txtrst\]"
 	#get git
 	local git=
 	if [[ -n $git_availabel ]]
@@ -31,5 +31,5 @@ set_prompt() {
 	fi
 
     # compose PS1
-    PS1="\[$exit\] \[$time\] \[$user\] \[$path\] \[$git\]\\n\[$prompt\] "
+    PS1="$exit $time $user $path $git\\n$prompt "
 }
